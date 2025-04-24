@@ -44,6 +44,33 @@ namespace COMP3B.assignment_5.Controllers
 
             return CreatedAtAction(nameof(GetBook), new { id = newBook.Id }, newBook);
         }
+        [HttpPut("{id}")]
+        public IActionResult UpdateBook(int id, Book updatedBook)
+        {
+            
+            if (id != updatedBook.Id)
+            {
+                return BadRequest("ID mismatch!");
+            }
+
+            
+            var existingBook = LibraryData.Books.Find(b => b.Id == id);
+
+          
+            if (existingBook == null)
+            {
+                return NotFound();
+            }
+
+           
+            existingBook.Title = updatedBook.Title;
+            existingBook.Author = updatedBook.Author;
+            existingBook.YearPublished = updatedBook.YearPublished;
+            existingBook.IsAvailable = updatedBook.IsAvailable;
+
+            
+            return NoContent();
+        }
 
     }
 }
