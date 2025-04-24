@@ -72,5 +72,20 @@ namespace COMP3B.assignment_5.Controllers
             return NoContent();
         }
 
+        [HttpDelete("{id}")]
+        public IActionResult DeleteBook(int id)
+        {
+            var book = LibraryData.Books.Find(b => b.Id == id);
+
+            if (book == null)
+            {
+                return NotFound();
+            }
+
+            LibraryData.Books.Remove(book);
+
+            return NoContent();
+        }
+
     }
 }
