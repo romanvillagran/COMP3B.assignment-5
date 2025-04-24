@@ -30,5 +30,20 @@ namespace COMP3B.assignment_5.Controllers
             return Ok(book);
         }
 
+        [HttpPost]
+        public ActionResult<Book> AddBook(Book newBook)
+        {
+            if (newBook == null || string.IsNullOrEmpty(newBook.Title))
+            {
+                return BadRequest("Book needs a title!");
+            }
+
+            newBook.Id = LibraryData.Books.Max(b => b.Id) + 1;
+
+            LibraryData.Books.Add(newBook);
+
+            return CreatedAtAction(nameof(GetBook), new { id = newBook.Id }, newBook);
+        }
+
     }
 }
