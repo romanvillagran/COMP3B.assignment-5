@@ -1,3 +1,8 @@
+// Author: Roman Villagran
+// Course: COMP-003B
+// Faculty Name: Jonathan Cruz
+// Purpose: A very simple Library API to learn ASP.NET Core Web API
+
 namespace COMP3B.assignment_5
 {
     public class Program
